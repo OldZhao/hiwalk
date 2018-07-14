@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Stacked Bar Chart</title>
+	<script src="dist/Chart.bundle.js"></script>
+	<script src="utils.js"></script>
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+</head>
+
+<body>
+	<div style="width: 75%">
+		<canvas id="canvas"></canvas>
+	</div>
+	<div style="width: 75%">
+		<canvas id="canvas2"></canvas>
+	</div>
+	<!-- <button id="randomizeData">Randomize Data</button> -->
+	<script>
+		var barChartData = {
+			labels: ['李杰明','黄健超','朱丽飞','袁露露','蔡志刚','张甜谨','蒲勇飞','王勇博','张术'],
+			datasets:[{
+				label:'星期一',
+				backgroundColor: window.chartColors.red,
+				data:[15806, 13936, 13132, 11864, 11903, 8234, 10263, 9223, 10012]
+			},{
+				label:'星期二',backgroundColor: window.chartColors.blue,data:[16878, 10505, 16034, 10525, 10675, 10634, 9021, 10018, 10347]},{label:'星期三',backgroundColor: window.chartColors.green,data:[14415, 11520, 9865, 12496, 13070, 10107, 10292, 10090, 6900]},{label:'星期四',backgroundColor: window.chartColors.yellow,data:[15913, 14151, 10078, 15555, 9882, 10777, 10119, 10003, 10281]},{label:'星期五',backgroundColor: window.chartColors.Purple,data:[11490, 10175, 10422, 7870, 6850, 10175, 10225, 9486, 7540]}]
+
+		};
+		var barChartData2 = {
+			labels: ['李杰明','黄健超','朱丽飞','袁露露','蔡志刚','张甜谨','蒲勇飞','王勇博','张术'],
+			datasets:[{
+				label:'达标',
+				backgroundColor: window.chartColors.greed,
+				data:[5, 5, 4, 4, 3, 4, 4, 3, 3]
+			},{
+				label:'不达标',backgroundColor: window.chartColors.red,data:[0, 0, 1, 1, 2, 1, 1, 2, 2]}]
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					title: {
+						display: true,
+						text: 'HiWalk 每日步数'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+			var ctx2 = document.getElementById('canvas2').getContext('2d');
+			window.myBar2 = new Chart(ctx2, {
+				type: 'bar',
+				data: barChartData2,
+				options: {
+					title: {
+						display: true,
+						text: 'HiWalk 达标天数'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+		};
+
+		// document.getElementById('randomizeData').addEventListener('click', function() {
+		// 	barChartData.datasets.forEach(function(dataset) {
+		// 		dataset.data = dataset.data.map(function() {
+		// 			return randomScalingFactor();
+		// 		});
+		// 	});
+		// 	window.myBar.update();
+		// });
+	</script>
+</body>
+
+</html>
