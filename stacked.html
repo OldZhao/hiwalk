@@ -15,6 +15,14 @@
 </head>
 
 <body>
+<!-- 第二周 -->
+<div style="width: 75%">
+		<canvas id="canvas3"></canvas>
+	</div>
+	<div style="width: 75%">
+		<canvas id="canvas4"></canvas>
+	</div>
+<!-- 第一周 -->
 	<div style="width: 75%">
 		<canvas id="canvas"></canvas>
 	</div>
@@ -23,6 +31,13 @@
 	</div>
 	<!-- <button id="randomizeData">Randomize Data</button> -->
 	<script>
+	var barChartData3 = {
+			labels: ['黄健超','李杰明','朱丽飞','蔡志刚','王勇博','张甜谨','袁露露','张术','蒲勇飞'],datasets:[{label:'星期一',backgroundColor: window.chartColors.red,data:[16241, 16351, 15325, 12993, 12242, 10784, 10057, 10079, 8260]},{label:'星期二',backgroundColor: window.chartColors.blue,data:[13983, 13734, 13392, 10101, 10016, 10607, 11220, 7811, 7824]}]
+
+		};
+		var barChartData4 = {
+			labels: ['黄健超','李杰明','朱丽飞','蔡志刚','王勇博','张甜谨','袁露露','张术','蒲勇飞'],datasets:[{label:'达标',backgroundColor: window.chartColors.greed,data:[2, 2, 2, 2, 2, 2, 2, 1, 0]},{label:'不达标',backgroundColor: window.chartColors.red,data:[0, 0, 0, 0, 0, 0, 0, 1, 2]}]
+		};
 		var barChartData = {
 			labels: ['李杰明','黄健超','朱丽飞','蔡志刚','张甜谨','袁露露','王勇博','蒲勇飞','张术'],datasets:[{label:'星期一',backgroundColor: window.chartColors.red,data:[15806, 13936, 13132, 11903, 8234, 11864, 9223, 10263, 10012]},{label:'星期二',backgroundColor: window.chartColors.blue,data:[16878, 10505, 16034, 10675, 10634, 10525, 10018, 9021, 10347]},{label:'星期三',backgroundColor: window.chartColors.green,data:[14415, 11520, 9865, 13070, 10107, 12496, 10090, 10292, 6900]},{label:'星期四',backgroundColor: window.chartColors.yellow,data:[15913, 14151, 10078, 9882, 10777, 15555, 10003, 10119, 10281]},{label:'星期五',backgroundColor: window.chartColors.Purple,data:[11490, 10175, 10422, 6850, 10175, 7870, 9486, 10225, 7540]},{label:'星期六',backgroundColor: window.chartColors.orange,data:[17142, 8089, 11972, 10665, 10110, 8719, 10302, 7854, 4387]},{label:'星期天',backgroundColor: window.chartColors.gray,data:[14244, 19832, 10292, 12272, 10146, 2998, 10194, 3501, 4993]}]
 
@@ -32,6 +47,58 @@
 		};
 
 		window.onload = function() {
+       			// 第二周
+				var ctx = document.getElementById('canvas3').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData3,
+				options: {
+					title: {
+						display: true,
+						text: 'HiWalk 第二周 每日步数'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+			var ctx2 = document.getElementById('canvas4').getContext('2d');
+			window.myBar2 = new Chart(ctx2, {
+				type: 'bar',
+				data: barChartData4,
+				options: {
+					title: {
+						display: true,
+						text: 'HiWalk 第二周 达标天数'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+
+			// 第一周
+
 			var ctx = document.getElementById('canvas').getContext('2d');
 			window.myBar = new Chart(ctx, {
 				type: 'bar',
